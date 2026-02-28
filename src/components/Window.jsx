@@ -42,11 +42,11 @@ export default function Window({
          with Framer Motion and cause the "laggy click" behavior.
       */
       className={`flex flex-col overflow-hidden pointer-events-auto shadow-2xl
-                  ${isMaximized 
-                    ? '!w-screen !h-screen !rounded-none !top-0 !left-0' 
-                    : 'w-[95vw] md:w-[750px] h-[70vh] md:h-[500px] rounded-2xl border border-white/40'}
-                  bg-white/85 backdrop-blur-3xl
-                  ${active ? 'ring-1 ring-blue-500/30 shadow-blue-500/20' : 'shadow-black/10'}`}
+  ${isMaximized 
+    ? '!w-screen !h-screen !rounded-none !top-0 !left-0 pt-[env(safe-area-inset-top,20px)]' 
+    : 'w-[95vw] md:w-[750px] h-[70vh] md:h-[500px] rounded-2xl border border-white/40'}
+  bg-white/85 backdrop-blur-3xl
+  ${active ? 'ring-1 ring-blue-500/30' : ''}`}
     >
       {/* Window Header - Drag Handle */}
       <div 
