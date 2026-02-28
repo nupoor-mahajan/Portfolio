@@ -121,7 +121,7 @@ export default function App() {
       </div>
 
       {/* LAYER 3: Dock */}
-      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-50 flex gap-2 md:gap-4 bg-white/40 backdrop-blur-3xl p-2 md:p-3 rounded-2xl md:rounded-3xl border border-white/40 shadow-2xl pointer-events-auto max-w-[95vw]">
+      <div className="absolute bottom-[env(safe-area-inset-bottom,20px)] mb-4 md:bottom-10 left-1/2 -translate-x-1/2 z-50 ...">
         {APPS.map(app => (
           <button
             key={app.id}
