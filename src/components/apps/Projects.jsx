@@ -39,7 +39,6 @@ export default function Projects() {
         try {
           const response = await fetch(`https://api.github.com/repos/nupoor-mahajan/${project.repoName}`);
           const data = await response.json();
-          // Logic: Using repo 'size' as a mock for progress
           const mockCommits = data.size > 0 ? Math.min(Math.floor(data.size / 10), project.targetCommits) : 5;
           const percentage = Math.min(Math.round((mockCommits / project.targetCommits) * 100), 95);
           updatedProgress[project.title] = `${percentage}%`;
@@ -53,25 +52,26 @@ export default function Projects() {
   }, []);
 
   return (
-    /* FIX: Removed h-screen and overflow-y-auto to prevent double scrollbars.
-      The parent container (your main app window) should handle the scroll.
+    /* FIX: Changed min-h-full to h-full and added overflow-y-auto here.
+       This ensures the Window header stays fixed while only this content scrolls.
     */
-    <div className="w-full min-h-full bg-transparent">
-      <div className="max-w-5xl mx-auto px-6 py-10 space-y-16">
+    <div className="w-full h-full bg-transparent overflow-y-auto custom-scrollbar">
+      <div className="max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-10 space-y-12 md:space-y-16">
         
         {/* Featured Projects Section */}
         <section>
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
+            <h2 className="text-[10px] md:text-xs font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
               <Code2 size={14} className="text-blue-500" /> Featured Projects
             </h2>
             <span className="h-[1px] flex-1 bg-slate-100 ml-4"></span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {COMPLETED_PROJECTS.map((p) => (
-              <div key={p.title} className="group bg-white border border-slate-200 p-6 rounded-[2rem] hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500">
-                <div className="aspect-video rounded-[1.25rem] mb-5 overflow-hidden border border-slate-100 bg-slate-50 relative">
+              <div key={p.title} className="group bg-white border border-slate-200 p-5 md:p-6 rounded-[1.5rem] md:rounded-[2rem] hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-1 transition-all duration-500">
+                {/* Optimized Iframe Container for Mobile */}
+                <div className="hidden sm:block aspect-video rounded-[1.25rem] mb-5 overflow-hidden border border-slate-100 bg-slate-50 relative">
                   <iframe 
                     src={p.live} 
                     title={p.title}
@@ -88,7 +88,7 @@ export default function Projects() {
                   ))}
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-800 mb-2">{p.title}</h3>
+                <h3 className="text-lg md:text-xl font-bold text-slate-800 mb-2">{p.title}</h3>
                 <p className="text-xs text-slate-500 leading-relaxed mb-8 line-clamp-2">{p.desc}</p>
 
                 <div className="flex gap-3">
@@ -111,7 +111,7 @@ export default function Projects() {
         {/* Active Development Section */}
         <section className="pb-12">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
+            <h2 className="text-[10px] md:text-xs font-black text-slate-400 uppercase tracking-[0.2em] flex items-center gap-2">
               <Construction size={14} className="text-amber-500" /> Active Development
             </h2>
             <span className="h-[1px] flex-1 bg-slate-100 ml-4"></span>

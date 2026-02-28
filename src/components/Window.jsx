@@ -7,13 +7,13 @@ export default function Window({
 }) {
   return (
     <motion.div
-      /* layout prop is the secret to smooth size transitions without CSS lag */
+      /* layout prop enables hardware-accelerated fluid size transitions */
       layout
       initial={{ scale: 0.95, opacity: 0 }}
       animate={{ 
         scale: 1, 
         opacity: 1, 
-        // Force reset coordinates to 0 when maximized to clear any drag offsets
+        /* Reset drag offsets to 0 when maximized to prevent misalignment */
         x: isMaximized ? 0 : undefined,
         y: isMaximized ? 0 : undefined,
         transition: { 
@@ -25,7 +25,7 @@ export default function Window({
       }}
       exit={{ scale: 0.95, opacity: 0 }}
       
-      /* DRAG CONFIG */
+      /* DRAG CONFIGURATION */
       drag={!isMaximized} 
       dragMomentum={true} 
       dragElastic={0.05} 
@@ -35,22 +35,22 @@ export default function Window({
         zIndex, 
         ...style, 
         position: 'absolute',
-        touchAction: 'none' // Crucial for mobile dragging stability
+        touchAction: 'none' /* Prevents system gestures from interfering with drag */
       }}
       
-      /* Removed 'transition-all' and 'duration-300' because they fight 
-         with Framer Motion and cause the "laggy click" behavior.
+      /* FIX: Added !h-[100dvh] to lock height to the dynamic viewport.
+         FIX: Added pt-[env(safe-area-inset-top)] to keep the header below the notch.
       */
       className={`flex flex-col overflow-hidden pointer-events-auto shadow-2xl
-  ${isMaximized 
-    ? '!w-screen !h-screen !rounded-none !top-0 !left-0 pt-[env(safe-area-inset-top,20px)]' 
-    : 'w-[95vw] md:w-[750px] h-[70vh] md:h-[500px] rounded-2xl border border-white/40'}
-  bg-white/85 backdrop-blur-3xl
-  ${active ? 'ring-1 ring-blue-500/30' : ''}`}
+        ${isMaximized 
+          ? '!w-screen !h-[100dvh] !rounded-none !top-0 !left-0 pt-[env(safe-area-inset-top,20px)]' 
+          : 'w-[95vw] md:w-[750px] h-[70vh] md:h-[500px] rounded-2xl border border-white/40'}
+        bg-white/85 backdrop-blur-3xl
+        ${active ? 'ring-1 ring-blue-500/30 shadow-blue-500/20' : 'shadow-black/10'}`}
     >
-      {/* Window Header - Drag Handle */}
+      {/* Window Header - Fixed Top Area */}
       <div 
-        className="flex items-center justify-between px-4 py-3 bg-slate-50/80 border-b border-slate-200/50 cursor-grab active:cursor-grabbing select-none"
+        className="flex items-center justify-between px-4 py-3 bg-slate-50/80 border-b border-slate-200/50 cursor-grab active:cursor-grabbing select-none shrink-0"
         onDoubleClick={onMaximize}
       >
         <div className="flex items-center gap-3">
@@ -90,6 +90,7 @@ export default function Window({
         </div>
       </div>
 
+      {/* Main Content Area - Scrollable */}
       <div className="flex-1 overflow-auto custom-scrollbar bg-white/50">
         {children}
       </div>
