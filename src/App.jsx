@@ -121,32 +121,35 @@ export default function App() {
       </div>
 
       {/* LAYER 3: Dock */}
-      <div className="absolute bottom-9 md:bottom-20 left-1/2 -translate-x-1/2 z-50 flex gap-2 md:gap-4 bg-white/40 backdrop-blur-3xl p-2 md:p-3 rounded-2xl md:rounded-3xl border border-white/40 shadow-2xl pointer-events-auto max-w-[95vw]">
-        {APPS.map(app => (
-          <button
-            key={app.id}
-            onClick={() => toggleApp(app.id)}
-            className={`group relative w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-3xl transition-all duration-300 active:scale-90
-              ${openApps.includes(app.id) 
-                ? 'bg-white/80 shadow-lg border border-white -translate-y-1' 
-                : 'bg-transparent hover:bg-white/40 hover:-translate-y-2'
-              }
-            `}
-          >
-            <span className="hidden md:block absolute -top-12 opacity-0 group-hover:opacity-100 transition-all duration-200 bg-slate-800 text-white text-[10px] px-2 py-1 rounded font-bold uppercase tracking-widest pointer-events-none whitespace-nowrap shadow-xl">
-              {app.title}
-            </span>
+      {/* LAYER 3: Dock - Responsive Positioning */}
+<div className="fixed bottom-[26px] md:bottom-11 left-1/2 -translate-x-1/2 z-50 flex gap-2 md:gap-4 bg-white/40 backdrop-blur-3xl p-2 md:p-3 rounded-2xl md:rounded-3xl border border-white/40 shadow-2xl pointer-events-auto max-w-[95vw] transition-all duration-300">
+  {APPS.map(app => (
+    <button
+      key={app.id}
+      onClick={() => toggleApp(app.id)}
+      className={`group relative w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-3xl transition-all duration-300 active:scale-90
+        ${openApps.includes(app.id) 
+          ? 'bg-white/80 shadow-lg border border-white -translate-y-1' 
+          : 'bg-transparent hover:bg-white/40 hover:-translate-y-2'
+        }
+      `}
+    >
+      {/* Tooltip: hidden on mobile, visible on desktop hover */}
+      <span className="hidden md:block absolute -top-12 opacity-0 group-hover:opacity-100 transition-all duration-200 bg-slate-800 text-white text-[10px] px-2 py-1 rounded font-bold uppercase tracking-widest pointer-events-none whitespace-nowrap shadow-xl">
+        {app.title}
+      </span>
 
-            <span className={`${app.color} group-hover:scale-110 transition-transform duration-300`}>
-              {app.icon}
-            </span>
-            
-            {openApps.includes(app.id) && (
-              <div className="absolute -bottom-1.5 w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
-            )}
-          </button>
-        ))}
-      </div>
+      <span className={`${app.color} group-hover:scale-110 transition-transform duration-300`}>
+        {app.icon}
+      </span>
+      
+      {/* Active Indicator Dot */}
+      {openApps.includes(app.id) && (
+        <div className="absolute -bottom-1.5 w-1.5 h-1.5 bg-blue-500 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
+      )}
+    </button>
+  ))}
+</div>
     </div>
   );
 }
