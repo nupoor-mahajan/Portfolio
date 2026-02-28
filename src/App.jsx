@@ -121,7 +121,7 @@ export default function App() {
       </div>
 
       {/* LAYER 3: Dock */}
-      <div className="absolute bottom-8 md:bottom-18 left-1/2 -translate-x-1/2 z-50 flex gap-2 md:gap-4 bg-white/40 backdrop-blur-3xl p-2 md:p-3 rounded-2xl md:rounded-3xl border border-white/40 shadow-2xl pointer-events-auto max-w-[95vw]">
+      <div className="absolute bottom-9 md:bottom-20 left-1/2 -translate-x-1/2 z-50 flex gap-2 md:gap-4 bg-white/40 backdrop-blur-3xl p-2 md:p-3 rounded-2xl md:rounded-3xl border border-white/40 shadow-2xl pointer-events-auto max-w-[95vw]">
         {APPS.map(app => (
           <button
             key={app.id}
