@@ -14,8 +14,15 @@ const COMPLETED_PROJECTS = [
     desc: "Official digital presence for Jeevak Swabhimani Mahila Sanstha, focusing on accessibility and SEO.",
     tags: ["UI/UX", "Responsive Design", "SEO"],
     live: "#",
-    repo: "https://github.com/nupoor-mahajan/NGO-Platform"
-  }
+    repo: "https://github.com/nupoor-mahajan/jeevak-swabhimani"
+  },
+  {
+  title: "StudyDash",
+  desc: "A high-performance student productivity dashboard featuring secure Firebase social authentication and real-time study tracking.",
+  tags: ["React", "Firebase", "TypeScript", "Vite"],
+  live: "https://studydash-one.vercel.app/", // Verified based on our recent troubleshooting
+  repo: "https://github.com/nupoor-mahajan/studydash" 
+  },
 ];
 
 const WORKING_ON = [
