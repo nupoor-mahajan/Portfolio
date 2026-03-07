@@ -17,11 +17,18 @@ const COMPLETED_PROJECTS = [
     repo: "https://github.com/nupoor-mahajan/jeevak-swabhimani"
   },
   {
-  title: "StudyDash",
-  desc: "A high-performance student productivity dashboard featuring secure Firebase social authentication and real-time study tracking.",
-  tags: ["React", "Firebase", "TypeScript", "Vite"],
-  live: "https://studydash-one.vercel.app/", // Verified based on our recent troubleshooting
-  repo: "https://github.com/nupoor-mahajan/studydash" 
+    title: "StudyDash",
+    desc: "A high-performance student productivity dashboard featuring secure Firebase social authentication and real-time study tracking.",
+    tags: ["React", "Firebase", "TypeScript", "Vite"],
+    live: "https://studydash-one.vercel.app/",
+    repo: "https://github.com/nupoor-mahajan/studydash" 
+  },
+  {
+    title: "OS Lab",
+    desc: "A comprehensive center of Operating Systems algorithms, including CPU scheduling, process synchronization, and memory management.",
+    tags: ["React", "Tailwind CSS", "Vite", "Operating Systems"],
+    live: "https://nupoor-mahajan.github.io/OSlab/",
+    repo: "https://github.com/nupoor-mahajan/OSlab"
   },
 ];
 
